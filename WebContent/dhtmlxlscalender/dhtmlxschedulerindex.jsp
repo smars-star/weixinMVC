@@ -8,18 +8,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
   <title>日历</title>
   
-
-   <link rel="stylesheet" href="../media/dhtmlxScheduler/dhtmlxscheduler.css" type="text/css" media="screen" title="no title" charset="utf-8">
-
-  <!-- 
-  <link rel="stylesheet" href="../media/dhtmlxScheduler/dhtmlxscheduler.css" type="text/css" title="no title" charset="utf-8">
-   -->
-  
-  
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap-theme.css">
   <%@include file="/common/taglib.jsp"%>
-  
+    <%@include file="/common/js_css.jsp"%>
+    
   <style type="text/css" media="screen">
 	html, body{
 		margin:0px;

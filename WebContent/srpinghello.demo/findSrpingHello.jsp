@@ -9,9 +9,9 @@
   <title>spring Hello Title</title>
   
   
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap-theme.css">
+
   <%@include file="/common/taglib.jsp"%>
+  <%@include file="/common/js_css.jsp"%>
   
 </head>
 <body>
@@ -32,7 +32,16 @@
 
 <div class="panel panel-default">
   <div class="panel-heading text-center">公司人员信息查询</div>
-
+    
+    <display:table name="employeeList" id="row" pagesize="15" export="true" class="table text-left"  requestURI="findSrpingHello.do" >
+   <display:column property="employeeName" title="名字" sortable="true" headerClass="sortable"  value="${row.employeeName }"/>
+   <display:column property="genderCodeValue" title="性别" sortable="true" headerClass="sortable"  value="${row.genderCodeValue }"/>
+   <display:column property="workDepName" title="部门名称" sortable="true" headerClass="sortable"  value="${row.workDepName }"/>
+   <display:setProperty name="export.csv.filename" value="StaffInfo.csv"/>
+   <display:setProperty name="export.excel.filename" value="StaffInfo.xls"/>
+  </display:table>
+  
+     <!--  
 	  <table class="table text-left">
 	         <thead>
 				<tr>
@@ -43,7 +52,7 @@
 			</thead>
 			<tbody>
 	             <c:choose>
-	                    <c:when test="${empty employeeList }">
+	                   <c:when test="${empty employeeList }">
 						                 <tr>
 						                     <td colspan="3">对不起，暂无信息显示!</td>
 						                 </tr>
@@ -60,6 +69,7 @@
 	             </c:choose>
 			</tbody>
 	  </table>
+	  -->
 </div>
 	
 </form>	

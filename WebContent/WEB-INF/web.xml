@@ -36,6 +36,12 @@
   </filter-mapping>
   
   
+  <filter>
+       <filter-name>exportFilter</filter-name>
+       <filter-class>org.displaytag.filter.ResponseOverrideFilter</filter-class>
+  </filter>
+  
+  
   <!-- 部署weixinMVC配置start -->
   <servlet>
     <servlet-name>weixinMVC</servlet-name>
@@ -49,6 +55,7 @@
     <servlet-name>weixinMVC</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
     <!-- 部署weixinMVC配置end -->
   
   
