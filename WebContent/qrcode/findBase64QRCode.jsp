@@ -2,20 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
   
   <title>二维码生成页面</title>
-  <link rel="shortcut icon" href="favicon.ico" >
-  <link rel="icon" href="../media/images/userFace.jpg" type="image/jpg" >
-
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap-theme.css">
-  
-  
+      <%
+	request.setAttribute("sys_titleInfo", "二维码生成页面");
+    %>
+    
   <%@include file="/common/taglib.jsp"%>
+  <%@include file="/common/js_css.jsp"%>
+  <%--@include file="/common/JQuery.jsp"--%>
+  
+
+  
   
   <style type="text/css">
           .content{     
@@ -37,6 +35,8 @@
   
 </head>
 <body>
+  <%@include file="/common/head.jsp"%>
+  
 <form action="createBase64QRCode.do" method="post" onsubmit="return false;" id="loginID">
  
 <h1 class="text-center">二维码生成页面</h1>	<br /> 
@@ -50,6 +50,7 @@
          <div  style="float: right;margin-right: 10px;">
               <button type="submit" class="btn btn-default" onclick="createBase64QRCode();">生成二维码</button>
 	     </div>
+	     
         <div style="float: right;">
 		             <input type="text" id="typeFormat" class="form-control"    readonly="readonly" style="width: 200px; float:left;cursor: pointer;" name="typeFormat"   value="png"/>
 					 <div  id="showSelect"  class="content"  style="margin-left: 0px;margin-top: 8px;display: none;">

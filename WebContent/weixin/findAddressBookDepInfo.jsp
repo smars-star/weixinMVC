@@ -2,29 +2,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
   <title>微信通讯录部门列表</title>
   
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap-theme.css">
-  
-   <link rel="stylesheet" href="../../media/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-  
-  <%@include file="/common/taglib.jsp"%>
-  
-  <style type="text/css">
+    <%
+	request.setAttribute("sys_titleInfo", "微信通讯录部门列表");
+    %>
     
-  </style>
+  <%@include file="/common/taglib.jsp"%>
+  <%@include file="/common/js_css.jsp"%>
+  <%--@include file="/common/JQuery.jsp"--%>
   
 </head>
 <body>
+  <%@include file="/common/head.jsp"%>
+  
 <form action="findAddressBookEmpInfo.do" method="post" onsubmit="return false;">
  
  <input type="hidden"  name="department" id="departmentID"  value="${department }">
-	<h1 class="text-center">微信通讯录部门信息</h1>	<br /> 
 	
 
 <div style="float: right;margin-right: 5px;margin-top: 5px;">

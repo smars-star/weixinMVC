@@ -2,20 +2,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-  <title>spring Hello Title</title>
+  <title>微信MVC框架首页</title>
   
-
-  <link rel="stylesheet" href="/media/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="/media/bootstrap/css/bootstrap-theme.css">
+  <%
+	request.setAttribute("sys_titleInfo", "微信MVC框架首页");
+    %>
+    
   <%@include file="/common/taglib.jsp"%>
   <%@include file="/common/js_css.jsp"%>
+  <%--@include file="/common/JQuery.jsp"--%>
   
 </head>
 <body>
+  <%@include file="/common/head.jsp"%>
+  
         
        <div class="list-group">
 		   <a href="./test/findSrpingHello.do" class="list-group-item list-group-item-success" >查询人员(部门)信息</a>

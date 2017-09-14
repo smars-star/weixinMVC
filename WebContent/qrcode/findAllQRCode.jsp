@@ -2,30 +2,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  
   <title>微信 应用常用应用二维码</title>
   
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap-theme.css">
-  
-  
-  <%@include file="/common/taglib.jsp"%>
-  
-  <style type="text/css">
+      <%
+	request.setAttribute("sys_titleInfo", "微信应用常用应用二维码");
+    %>
     
-  </style>
+  <%@include file="/common/taglib.jsp"%>
+  <%@include file="/common/js_css.jsp"%>
+  <%--@include file="/common/JQuery.jsp"--%>
   
 </head>
 <body>
+  <%@include file="/common/head.jsp"%>
+  
 <form action="findAllQRCode.do" method="post" onsubmit="return false;">
- 
-<h1 class="text-center">微信通讯录部门信息</h1>	<br /> 
-	
-
-
 	
 <div style="width:100%;vertical-align: top;margin-top: 25px;line-height: 40px;text-align: center;padding: 10px;">
 		    <div class="row">

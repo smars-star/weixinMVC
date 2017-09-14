@@ -2,23 +2,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
   <title>新增微信部门</title>
-  
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap-theme.css">
-  
-  <%@include file="/common/taglib.jsp"%>
-  
-  <style type="text/css">
+
+    <%
+	request.setAttribute("sys_titleInfo", "新增微信部门");
+    %>
     
-  </style>
+  <%@include file="/common/taglib.jsp"%>
+  <%@include file="/common/js_css.jsp"%>
+  <%--@include file="/common/JQuery.jsp"--%>
   
 </head>
 <body>
+  <%@include file="/common/head.jsp"%>
+  
 <form action="addDep.do" method="post" onsubmit="return false;">
   
   <div style="max-width: 85%;vertical-align: top;margin-top: 25px;line-height: 40px;" align=center>
@@ -26,13 +24,13 @@
 	   <tr>
 	           <td class="text-right">部门名称：</td>
 	           <td>
-	                  <input name="name" type="text" >
+	                  <input name="name" type="text"  class="form-control">
 	           </td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">父部门：</td>
 	           <td>
-	                    <select name="parentid">
+	                    <select name="parentid" class="form-control">
 	                        <option value=""> -- 请选择 -- </option>
 	                        <c:forEach items="${departmentList }" var="departmentDTO">
 	                         <option value="${departmentDTO.id }">${departmentDTO.name }</option>

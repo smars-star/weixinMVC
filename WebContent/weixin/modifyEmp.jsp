@@ -2,24 +2,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
   <title>修改微信人员信息</title>
   
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap-theme.css">
-  <link rel="stylesheet" href="../../media/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-  
-  <%@include file="/common/taglib.jsp"%>
-  
-  <style type="text/css">
+    <%
+	request.setAttribute("sys_titleInfo", "修改微信人员信息");
+    %>
     
-  </style>
+  <%@include file="/common/taglib.jsp"%>
+  <%@include file="/common/js_css.jsp"%>
+  <%--@include file="/common/JQuery.jsp"--%>
   
 </head>
 <body>
+  <%@include file="/common/head.jsp"%>
+  
 <form action="modifyEmp.do" method="post" onsubmit="return false;">
   
   <div style="max-width: 85%;vertical-align: top;margin-top: 25px;line-height: 40px;" align=center>
@@ -47,29 +44,29 @@
 	           <td class="text-right">部门名称：</td>
 	           <td>
 	            
-		            <input type="text" name="depName" readonly="readonly"  style="cursor:hand;" value="${weixinEmpDTO.depName }">
+		             <input type="text" name="depName" readonly="readonly"  class="form-control"  style="cursor:hand;" value="${weixinEmpDTO.depName }">
 		             <input type="hidden" name="department"  value="${weixinEmpDTO.department[0] }">
-		             <div id="showDepTreeID" style="width:160px;vertical-align: top;margin-top:0px;display: none;max-height: 150px;overflow: auto;position: absolute;background-color: #C1C1C1;" align=center >
+		             <div id="showDepTreeID" style="width:180px;vertical-align: top;margin-top:0px;display: none;max-height: 150px;overflow: auto;position: absolute;background-color: #C1C1C1;" align=center >
 					     <ul id="tree" class="ztree"></ul>
-					</div>	
+					</div>
 				
 	           </td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">职务：</td>
-	           <td><input  type="text"  name="position" value="${weixinEmpDTO.position}"></td>
+	           <td><input  type="text"  name="position" class="form-control"  value="${weixinEmpDTO.position}"></td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">手机：</td>
-	           <td><input  type="text"  name="mobile" value="${weixinEmpDTO.mobile}"></td>
+	           <td><input  type="text"  name="mobile" class="form-control"  value="${weixinEmpDTO.mobile}"></td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">电话：</td>
-	           <td><input  type="tel"  name="telephone" value="${weixinEmpDTO.telephone}"></td>
+	           <td><input  type="tel"  name="telephone"  class="form-control"  value="${weixinEmpDTO.telephone}"></td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">email：</td>
-	           <td><input  type="text"  name="email" value="${weixinEmpDTO.email}"></td>
+	           <td><input  type="text"  name="email"  class="form-control"   value="${weixinEmpDTO.email}"></td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">头像：</td>
@@ -98,7 +95,7 @@
 	   <tr>
 	           <td class="text-right">英文名称：</td>
 	           <td>
-	                  <input type="text" name="english_name"  value="${weixinEmpDTO.english_name}">
+	                  <input type="text" name="english_name" class="form-control"  value="${weixinEmpDTO.english_name}">
 	           </td>
 	   </tr>
 

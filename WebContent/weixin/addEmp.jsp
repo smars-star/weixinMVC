@@ -2,22 +2,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-  <title>修改微信人员信息</title>
+
+    <title>新增微信人员信息</title>
+    <%
+	request.setAttribute("sys_titleInfo", "新增微信人员信息");
+    %>
+    
+    <%@include file="/common/taglib.jsp"%>
+  <%@include file="/common/js_css.jsp"%>
+  <%--@include file="/common/JQuery.jsp"--%>
   
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap-theme.css">
-  
-  <link rel="stylesheet" href="../../media/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-  
-  <%@include file="/common/taglib.jsp"%>
-  
- 
 </head>
 <body>
+  <%@include file="/common/head.jsp"%>
+  
 <form action="addEmp.do" method="post" onsubmit="return false;">
   
   <div style="max-width: 85%;vertical-align: top;margin-top: 25px;line-height: 40px;" align=center>
@@ -25,54 +23,47 @@
 	   <tr>
 	           <td class="text-right">用户ID(userNO)：</td>
 	           <td>
-	                  <input name="userid" type="text" >
+	                  <input name="userid" type="text"  class="form-control">
 	           </td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">姓名：</td>
 	           <td>
-	                  <input name="name" " type="text">
+	                  <input name="name" " type="text" class="form-control">
 	           </td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">性别：</td>
 	           <td>
-	                  <input name="gender"  type="radio" value="1" checked="checked">男
+	                  <input name="gender"  type="radio" value="1" checked="checked" >男
 	                  <input name="gender"  type="radio" value="2" checked="checked">女
 	           </td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">部门名称：</td>
 	           <td>
-	             <input type="text" name="depName" readonly="readonly"  style="cursor:hand;">
+	             <input type="text" name="depName" readonly="readonly" class="form-control"  style="cursor:hand;">
 	             <input type="hidden" name="department" >
-	             <div id="showDepTreeID" style="width:155px;vertical-align: top;margin-top:0px;display: none;max-height: 100px;overflow: auto;position: absolute;background-color: #C1C1C1;" align=center >
+	             <div id="showDepTreeID" style="width:180px;vertical-align: top;margin-top:0px;display: none;max-height: 150px;overflow: auto;position: absolute;background-color: #C1C1C1;" align=center >
 				     <ul id="tree" class="ztree"></ul>
 				</div>	
-	            <%--    <select name="department" >
-	                      <option value="">-- 请选择 --</option>
-	                       <c:forEach items="${depMap}"  var="depMap">
-	                        <option value="${depMap.key}">${depMap.value}</option>    
-	                       </c:forEach>
-	               </select> --%>
-	               
 	           </td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">职务：</td>
-	           <td><input  type="text"  name="position" ></td>
+	           <td><input  type="text"  name="position"  class="form-control"></td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">手机：</td>
-	           <td><input  type="text"  name="mobile" ></td>
+	           <td><input  type="text"  name="mobile"  class="form-control"></td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">电话：</td>
-	           <td><input  type="tel"  name="telephone" ></td>
+	           <td><input  type="tel"  name="telephone"  class="form-control"></td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">email：</td>
-	           <td><input  type="text"  name="email" ></td>
+	           <td><input  type="text"  name="email"  class="form-control"></td>
 	   </tr>
 	   <tr>
 	           <td class="text-right">身份：</td>
@@ -96,7 +87,7 @@
 	   <tr>
 	           <td class="text-right">英文名称：</td>
 	           <td>
-	                  <input type="text" name="english_name" >
+	                  <input type="text" name="english_name" class="form-control">
 	           </td>
 	   </tr>
 

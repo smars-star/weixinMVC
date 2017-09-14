@@ -2,25 +2,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
   <title>微信通讯录部门列表</title>
-  
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap.css">
-  <link rel="stylesheet" href="../../media/bootstrap/css/bootstrap-theme.css">
-  
-   <link rel="stylesheet" href="../../media/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-  
-  <%@include file="/common/taglib.jsp"%>
-  
-  <style type="text/css">
     
-  </style>
+    <%
+	request.setAttribute("sys_titleInfo", "微信通讯录部门列表");
+    %>
+    
+  <%@include file="/common/taglib.jsp"%>
+  <%@include file="/common/js_css.jsp"%>
+  <%--@include file="/common/JQuery.jsp"--%>
   
 </head>
 <body>
+  <%@include file="/common/head.jsp"%>
+  
 <form action="findAddressBookEmpInfo.do" method="post" onsubmit="return false;">
  
  <input type="hidden"  name="department" id="departmentID"  value="${department }">
@@ -30,98 +26,60 @@
 	 <ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
  </div>
  
- 
- <div style="position: fixed; left:260px;  top:0px;  height:850px; overflow: auto">
- 	 <table >
-	<tr>
-		<td style="vertical-align:top">
-		     <div style="float: right;margin-right: 5px;margin-top: 5px;">
+      <div style="float: right;margin-right: 5px;margin-top: 5px;">
 			      <button class="btn btn-primary btn-lg" type="submit" onclick="addInitEmp();">新增人员</button>
-			 </div>
-		
-			     <table class="table table-condensed showDepEmploy">
-			         <thead>
-			                <tr>
-						                  <td style="width:5%">操作</td>
-						                  <td style="width:2%">员工ID</td>
-						                  <td style="width:8%">员工名称</td>
-						                  <td style="width:10%">部门名称</td>
-						                  <td style="width:12%">职位</td>
-						                  <td style="width:6%">电话</td>
-						                  <td style="width:4%">性别</td>
-						                  <td style="width:8%">email</td>
-						                  <td style="width:3%">微信号</td>
-						                  <td style="width:4%">头像</td>
-						                  <td style="width:4%">是否关注</td>
-						                  <td style="width:4%">扩展信息</td>
-					        </tr>
-			         </thead>
-			         <tbody>
-			        <c:choose>
-			              <c:when test="${empty employeeList}">
-			                    <tr>
-			                             <td colspan="11">对不起，暂无人员信息！</td>
-			                    </tr>
-			              </c:when>
-			              <c:otherwise>
-			                    <c:forEach items="${employeeList }"  var="employeeDTO">
-			                          <tr>
-							                  <td>
-							                    <a href="#" onclick="deleteEmp('${employeeDTO.userid}')"><img alt="删除" src="../../media/images/btn_delete.png"></a>
-							                  </td>
-							                  <td>${employeeDTO.userid}</td>
-							                  <td><a href="#" onclick="modifyInitEmp('${employeeDTO.userid}');">${employeeDTO.name}</a></td>
-							                  <td>${employeeDTO.depName}</td>
-							                  <td>${employeeDTO.position}</td>
-							                  <td>${employeeDTO.mobile}</td>
-							                  <td>
-							                         <c:choose>
-							                              <c:when test="${employeeDTO.gender eq 1}">男</c:when>
-							                              <c:otherwise>女</c:otherwise>
-							                         </c:choose>
-							                  </td>
-							                  <td>${employeeDTO.email}</td>
-							                  <td>${employeeDTO.weixinid}</td>
-							                  <td>
-							                  
-							                        <c:choose>
-							                              <c:when test="${empty employeeDTO.avatar}"><img alt="${employeeDTO.name}" src="../../media/images/userFace.jpg" style="width: 20px;width: 20px;position: static;"></c:when>
-							                              <c:otherwise><img alt="${employeeDTO.name}" src="${employeeDTO.avatar}" style="width: 20px;width: 20px;position: static;"></c:otherwise>
-							                         </c:choose>
-							                        
-							                 </td>
-							                  <td>
-							                  
-							                  <c:choose>
-							                        <c:when test="${employeeDTO.status eq 1}">
-							                           是
-							                        </c:when>
-							                        <c:when test="${employeeDTO.status eq 2}">
-							                          已冻结
-							                        </c:when>
-							                        <c:otherwise>否</c:otherwise>
-							                  </c:choose>
-						
-							                  </td>
-							                  <td><c:if test="${not empty employeeDTO.extattr.attrs}">${employeeDTO.extattr.attrs}</c:if></td>
-					                  </tr>
-			                    </c:forEach>
-			                       
-			              </c:otherwise>
-			        </c:choose>
-			         </tbody>
-				</table>
-		 </td>
-	</tr>
-</table>
- </div>
+	 </div>
+			 
+     <div style="position: fixed; left:260px;  top:80px;  height:850px; overflow: auto">
+		  
+		   <display:table name="employeeList" id="row"  pagesize="15" export="true"  class="table table-condensed showDepEmploy"  requestURI="findAddressBookEmpInfo.do" >
+			   <display:column title="操作" sortable="false" headerClass="sortable"  media="html">
+			      <a href="#" onclick="deleteEmp('${row.userid}')"><img alt="删除" src="/media/images/btn_delete.png"></a>
+			   </display:column>
+			   <display:column title="员工ID" sortable="true" headerClass="sortable"  property="userid" />
+			     
+			   <display:column title="员工名称" sortable="true" headerClass="sortable" >
+			      <a href="#" onclick="modifyInitEmp('${row.userid}');">${row.name}</a>
+			   </display:column>
+			   
+			   <display:column property="depName" title="部门名称" sortable="true" headerClass="sortable" />
+			   <display:column property="position" title="职位" sortable="true" headerClass="sortable"  />
+			   <display:column property="mobile" title="电话" sortable="true" headerClass="sortable"  />
+			   <display:column title="性别" sortable="true" headerClass="sortable" >
+                              <c:choose>
+                              <c:when test="${row.gender eq 1}">男</c:when>
+                              <c:otherwise>女</c:otherwise>
+                         </c:choose>
+			   </display:column>
+			   
+			   <display:column property="email" title="email" sortable="true" headerClass="sortable"  autolink="true" />
+			   <display:column property="weixinid" title="微信号" sortable="true" headerClass="sortable"  />
+			     <display:column title="头像" sortable="true" headerClass="sortable" >
+                             <c:choose>
+                             <c:when test="${empty row.avatar}"><img alt="${row.name}" src="/media/images/userFace.jpg" style="width: 20px;width: 20px;position: static;"></c:when>
+                             <c:otherwise><img alt="${row.name}" src="${row.avatar}" style="width: 20px;width: 20px;position: static;"></c:otherwise>
+                          </c:choose>
+			   </display:column>
+			     <display:column title="是否关注" sortable="true" headerClass="sortable" >
+                               <c:choose>
+		                        <c:when test="${row.status eq 1}">是</c:when>
+		                        <c:when test="${row.status eq 2}">已冻结</c:when>
+		                        <c:otherwise>否</c:otherwise>
+		                  </c:choose>
+			   </display:column>
+			   <display:column property="extattr.attrs" title="扩展信息" sortable="true" headerClass="sortable"  />
+			  
+			   <display:setProperty name="export.csv.filename" value="StaffInfo.csv"/>
+			   <display:setProperty name="export.excel.filename" value="StaffInfo.xls"/>
+		   </display:table>
+				
+  </div>
 
  
 </form>	
  
-  <!-- <script type="text/javascript" src="../../media/js/jquery/jquery.js"></script> -->
-  <script type="text/javascript" src="../../media/zTree/js/jquery-1.4.4.min.js"></script>
-  <script type="text/javascript" src="../../media/zTree/js/jquery.ztree.core.js"></script>
+  <script type="text/javascript" src="/media/zTree/js/jquery-1.4.4.min.js"></script>
+  <script type="text/javascript" src="/media/zTree/js/jquery.ztree.core.js"></script>
   
   
   <script type="text/javascript">
@@ -232,7 +190,7 @@
 						    	//判断是否有微信头像
 						    	var  avatarStr = depEmpList[i].avatar;
 						    	if(avatarStr == null || avatarStr == 'undefined' || avatarStr == '' ){
-						    		avatarStr =  '<img src="../../media/images/userFace.jpg" style="width: 20px;width: 20px;position: static;">';
+						    		avatarStr =  '<img src="/media/images/userFace.jpg" style="width: 20px;width: 20px;position: static;">';
 						    	}else{
 						    		avatarStr =  '<img src="'+ avatarStr +'" style="width: 20px;width: 20px;position: static;">';
 						    	}

@@ -2,24 +2,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-  <title>网页应用授权</title>
 
-   <link rel="stylesheet" href="/media/bootstrap/css/bootstrap.css">
-   <link rel="stylesheet" href="/media/bootstrap/css/bootstrap-theme.css">
-   <link rel="stylesheet" href="/media/weixin/css/wexinqrcode.css">
-   
-   <%@include file="/common/taglib.jsp"%>
-    <%@include file="/common/js_css.jsp"%>
+  <title>网页应用授权和JS-SDK应用</title>
 
-</head>
-<body> 
+      <%
+	request.setAttribute("sys_titleInfo", "网页应用授权和JS-SDK应用");
+    %>
     
-		  <div id="wx_reg"></div>
-		  <div>
+  <%@include file="/common/taglib.jsp"%>
+  <%@include file="/common/js_css.jsp"%>
+  <%--@include file="/common/JQuery.jsp"--%>
+  
+</head>
+<body>
+  <%@include file="/common/head.jsp"%>
+    
+		 
+		  <div style="text-align: center;margin-top: 20px;">
+		   <div id="wx_reg"></div>
 		        <a href="https://open.work.weixin.qq.com/wwopen/sso/qrConnect?appid=wxf7a04f0e99c52b6f&agentid=1000004&redirect_uri=http%3a%2f%2fsmars.iok.la%2frenewalevaluateweixin%2ffindAllRenewalEvaluate.do">
 		                 <button type="button" class="btn btn-info">手动跳转链接</button>
 		        </a>

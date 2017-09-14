@@ -35,7 +35,7 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   
-  
+  <!-- displaytag分页显示 -->
   <filter>
        <filter-name>exportFilter</filter-name>
        <filter-class>org.displaytag.filter.ResponseOverrideFilter</filter-class>
