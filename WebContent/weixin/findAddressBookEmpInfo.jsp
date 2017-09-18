@@ -26,11 +26,11 @@
 	 <ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
  </div>
  
-      <div style="float: right;margin-right: 5px;margin-top: 5px;">
+      <div  style="width:150px;display: block;float: right;position: absolute;top: 60px;right: 10px;">
 			      <button class="btn btn-primary btn-lg" type="submit" onclick="addInitEmp();">新增人员</button>
 	 </div>
 			 
-     <div style="position: fixed; left:260px;  top:80px;  height:850px; overflow: auto">
+     <div style="position: fixed; left:260px;  top:120px;  height:850px; overflow: auto">
 		  
 		   <display:table name="employeeList" id="row"  pagesize="15" export="true"  class="table table-condensed showDepEmploy"  requestURI="findAddressBookEmpInfo.do" >
 			   <display:column title="操作" sortable="false" headerClass="sortable"  media="html">
