@@ -26,54 +26,54 @@
 	 <ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
  </div>
  
-      <div  style="width:150px;display: block;float: right;position: absolute;top: 60px;right: 10px;">
-			      <button class="btn btn-primary btn-lg" type="submit" onclick="addInitEmp();">新增人员</button>
-	 </div>
+<div  style="width:150px;display: block;float: right;position: absolute;top: 60px;right: 10px;">
+   <button class="btn btn-primary btn-lg" type="submit" onclick="addInitEmp();">新增人员</button>
+</div>
 			 
-     <div style="position: fixed; left:260px;  top:120px;  height:850px; overflow: auto">
-		  
-		   <display:table name="employeeList" id="row"  pagesize="15" export="true"  class="table table-condensed showDepEmploy"  requestURI="findAddressBookEmpInfo.do" >
-			   <display:column title="操作" sortable="false" headerClass="sortable"  media="html">
-			      <a href="#" onclick="deleteEmp('${row.userid}')"><img alt="删除" src="/media/images/btn_delete.png"></a>
-			   </display:column>
-			   <display:column title="员工ID" sortable="true" headerClass="sortable"  property="userid" />
-			     
-			   <display:column title="员工名称" sortable="true" headerClass="sortable" >
-			      <a href="#" onclick="modifyInitEmp('${row.userid}');">${row.name}</a>
-			   </display:column>
-			   
-			   <display:column property="depName" title="部门名称" sortable="true" headerClass="sortable" />
-			   <display:column property="position" title="职位" sortable="true" headerClass="sortable"  />
-			   <display:column property="mobile" title="电话" sortable="true" headerClass="sortable"  />
-			   <display:column title="性别" sortable="true" headerClass="sortable" >
-                              <c:choose>
-                              <c:when test="${row.gender eq 1}">男</c:when>
-                              <c:otherwise>女</c:otherwise>
-                         </c:choose>
-			   </display:column>
-			   
-			   <display:column property="email" title="email" sortable="true" headerClass="sortable"  autolink="true" />
-			   <display:column property="weixinid" title="微信号" sortable="true" headerClass="sortable"  />
-			     <display:column title="头像" sortable="true" headerClass="sortable" >
-                             <c:choose>
-                             <c:when test="${empty row.avatar}"><img alt="${row.name}" src="/media/images/userFace.jpg" style="width: 20px;width: 20px;position: static;"></c:when>
-                             <c:otherwise><img alt="${row.name}" src="${row.avatar}" style="width: 20px;width: 20px;position: static;"></c:otherwise>
-                          </c:choose>
-			   </display:column>
-			     <display:column title="是否关注" sortable="true" headerClass="sortable" >
-                               <c:choose>
-		                        <c:when test="${row.status eq 1}">是</c:when>
-		                        <c:when test="${row.status eq 2}">已冻结</c:when>
-		                        <c:otherwise>否</c:otherwise>
-		                  </c:choose>
-			   </display:column>
-			   <display:column property="extattr.attrs" title="扩展信息" sortable="true" headerClass="sortable"  />
-			  
-			   <display:setProperty name="export.csv.filename" value="StaffInfo.csv"/>
-			   <display:setProperty name="export.excel.filename" value="StaffInfo.xls"/>
-		   </display:table>
-				
-  </div>
+ <div style="position: fixed; left:260px;  top:120px;height:490px; overflow: auto">
+		
+		<display:table name="employeeList" id="row"  pagesize="15" export="true"  class="table table-condensed showDepEmploy"  requestURI="findAddressBookEmpInfo.do" >
+		<display:column title="操作" sortable="false" headerClass="sortable"  media="html">
+		<a href="#" onclick="deleteEmp('${row.userid}')"><img alt="删除" src="/media/images/btn_delete.png"></a>
+		</display:column>
+		<display:column title="员工ID" sortable="true" headerClass="sortable"  property="userid" />
+		
+		<display:column title="员工名称" sortable="true" headerClass="sortable" >
+		<a href="#" onclick="modifyInitEmp('${row.userid}');">${row.name}</a>
+		</display:column>
+		
+		<display:column property="depName" title="部门名称" sortable="true" headerClass="sortable" />
+		<display:column property="position" title="职位" sortable="true" headerClass="sortable"  />
+		<display:column property="mobile" title="电话" sortable="true" headerClass="sortable"  />
+		<display:column title="性别" sortable="true" headerClass="sortable" >
+		                 <c:choose>
+		                 <c:when test="${row.gender eq 1}">男</c:when>
+		                 <c:otherwise>女</c:otherwise>
+		            </c:choose>
+		</display:column>
+		
+		<display:column property="email" title="email" sortable="true" headerClass="sortable"  autolink="true" />
+		<display:column property="weixinid" title="微信号" sortable="true" headerClass="sortable"  />
+		<display:column title="头像" sortable="true" headerClass="sortable" >
+		                <c:choose>
+		                <c:when test="${empty row.avatar}"><img alt="${row.name}" src="/media/images/userFace.jpg" style="width: 20px;width: 20px;position: static;"></c:when>
+		                <c:otherwise><img alt="${row.name}" src="${row.avatar}" style="width: 20px;width: 20px;position: static;"></c:otherwise>
+		             </c:choose>
+		</display:column>
+		<display:column title="是否关注" sortable="true" headerClass="sortable" >
+		                  <c:choose>
+		             <c:when test="${row.status eq 1}">是</c:when>
+		             <c:when test="${row.status eq 2}">已冻结</c:when>
+		             <c:otherwise>否</c:otherwise>
+		       </c:choose>
+		</display:column>
+		<display:column property="extattr.attrs" title="扩展信息" sortable="true" headerClass="sortable"  />
+		
+		<display:setProperty name="export.csv.filename" value="StaffInfo.csv"/>
+		<display:setProperty name="export.excel.filename" value="StaffInfo.xls"/>
+		</display:table>
+		
+</div>
 
  
 </form>	
@@ -194,7 +194,8 @@
 						    	}else{
 						    		avatarStr =  '<img src="'+ avatarStr +'" style="width: 20px;width: 20px;position: static;">';
 						    	}
-						    	  
+						    	
+						    	//团队数据信息集合
 						        showEmpListStr  += '<tr><td><a href="#" onclick="deleteEmp('+"'"+ depEmpList[i].userid+"'"+')"><img alt="删除" src="../../media/images/btn_delete.png"></a></td><td>'
 						    	                                     +depEmpList[i].userid+'</td><td><a href="#"   onclick="modifyInitEmp('+"'"+depEmpList[i].userid+"'"+');">'+depEmpList[i].name+'</a></td><td>'
 						    	                                     +depEmpList[i].depName+"</td><td>"+depEmpList[i].position+"</td><td>"
@@ -202,7 +203,6 @@
 						    	                                     +depEmpList[i].email+'</td><td>'+wixinid+'</td><td>'
 						    	                                     +avatarStr+'</td><td>'+statusStr+'</td><td>'
 						    	                                     +depEmpList[i].extattr.attrs+'</td></tr>';
-						    	  
 						    }
 		        
 		        }else{
@@ -227,19 +227,16 @@
 	
 	//删除人员信息
 	function  deleteEmp(userid){
-		
 		var a=confirm("您确定要删除吗？");
 		if(a == true){
 			window.open('/weixin/deleteEmp.do?userid=' + userid);
 		}
 	}
-	
-	
 	  
-	  //新增人员信息
-	  function  addInitEmp(){
-		   window.open("/weixin/addInitEmp.do");
-	  }
+   //新增人员信息
+   function  addInitEmp(){
+	  window.open("/weixin/addInitEmp.do");
+	}
 	
   </script>
   
