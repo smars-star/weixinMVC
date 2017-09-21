@@ -5,28 +5,30 @@
 	
 	 <!-- get employee info  	-->
 	 <select id="findEmployeeByParam" parameterType="java.util.Map" resultType="EmployeeDTO">
-        SELECT   a.employeeId,
-                           a.employeeName,
-                           a.employeeNo,
-                           a.workDepID,
-                           b.depName workDepName,
-                           a.genderCode,
-                           (CASE
-                               WHEN a.genderCode = 1 THEN '男'
-                               WHEN a.genderCode = 2 THEN '女'
-                            END) genderCodeValue
-        FROM      fw_employee a, fw_department b
-        
-      
-        <where>
-        	           a.isPost ='是'  and  a.workDepID = b.depId 
-                    <if test="employeeName != null and employeeName != ''">
-							   and  ( instr(b.depName,#{employeeName}) >0  or  instr(a.employeeName,#{employeeName}) >0) 
-					 </if>
-        </where>
- 
-       order by workDepID desc,employeeName
- 
+	select  employeeId,employeeName,employeeNo,
+	              workDepID,workDepName,genderCode,
+	              genderCodeValue, rowsCount
+	from (
+				SELECT a.employeeId,
+				a.employeeName,
+				a.employeeNo,
+				a.workDepID,
+				b.depName workDepName,
+				a.genderCode,
+				(CASE
+				WHEN a.genderCode = 1 THEN '男'
+				WHEN a.genderCode = 2 THEN '女'
+				END) genderCodeValue,
+				rownum rowsCount
+				FROM fw_employee a, fw_department b
+				where a.isPost ='是' and a.workDepID = b.depId
+				<if test="employeeName != null and employeeName != ''">
+					and ( instr(b.depName,#{employeeName}) >0 or
+					instr(a.employeeName,#{employeeName}) >0)
+				</if>
+				order by workDepID desc,employeeName
+	)
+	<![CDATA[ where rowsCount >= #{showDataLineCount} and rowsCount <= #{showDataLineCount}+20 ]]>
     </select> 
 
 	<select id="findEmployee"  resultType="EmployeeDTO">

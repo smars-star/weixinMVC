@@ -12,15 +12,42 @@
   <%@include file="/common/taglib.jsp"%>
   <%@include file="/common/js_css.jsp"%>
   <%--@include file="/common/JQuery.jsp"--%>
-  
+
+
+  <script type="text/javascript" src="/media/js/jquery/jQuery1.11.3.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function () {
+
+      $("#showConent").scroll(function () {
+          var viewH = $(this).height();//可见高度
+          var contentH = $(this).get(0).scrollHeight;//内容高度
+          var scrollTop = $(this).scrollTop();//滚动高度
+          var count = $(".showDepEmploy tr").length;
+          if (contentH - viewH - scrollTop<=100) {
+              
+        	  var  srollTableDate = '<tr><td colspan="12">'
+        	                                   +'<p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>'
+        	                                   +'</td></tr>'
+        	  
+        	$(".showDepEmploy").append(srollTableDate);
+          /*     $.ajax({
+                  url: "XXXAction.do?id=" + count,
+                  type: "POST",
+                  success: function (data) {
+                      $("#showDepEmploy").append(data);
+                  }
+              }); */
+          }
+      });
+
+  })
+  </script> 
 </head>
 <body>
   <%@include file="/common/head.jsp"%>
   
 <form action="findAddressBookEmpInfo.do" method="post" onsubmit="return false;">
- 
  <input type="hidden"  name="department" id="departmentID"  value="${department }">
-
  
  <div style="width:260; vertical-align:top; BORDER-RIGHT: #999999 1px dashed">
 	 <ul id="tree" class="ztree" style="width:260px; overflow:auto;"></ul>
@@ -30,8 +57,7 @@
    <button class="btn btn-primary btn-lg" type="submit" onclick="addInitEmp();">新增人员</button>
 </div>
 			 
- <div style="position: fixed; left:260px;  top:120px;height:490px; overflow: auto">
-		
+ <div style="position: fixed; left:260px;  top:120px;height:550px;overflow: auto;" id="showConent">
 		<display:table name="employeeList" id="row"  pagesize="15" export="true"  class="table table-condensed showDepEmploy"  requestURI="findAddressBookEmpInfo.do" >
 		<display:column title="操作" sortable="false" headerClass="sortable"  media="html">
 		<a href="#" onclick="deleteEmp('${row.userid}')"><img alt="删除" src="/media/images/btn_delete.png"></a>

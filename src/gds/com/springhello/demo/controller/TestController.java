@@ -2,7 +2,10 @@ package gds.com.springhello.demo.controller;
 
 import gds.com.springhello.demo.dto.EmployeeDTO;
 import gds.com.springhello.demo.service.TestService;
+import gds.com.weixin.util.WeiXinUtils;
+import net.sf.json.JSONArray;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +32,10 @@ public class TestController {
 	@RequestMapping("/findSrpingHello")
 	public String  findSrpingHello(HttpServletRequest request, HttpServletResponse response,Model  model, @RequestParam Map<String,String>map){
 		
+		if(!map.containsKey("showDataLineCount")) {
+			map.put("showDataLineCount", "0");
+		}
+		
 		//获取人员信息
 	    List<EmployeeDTO>  employeeList = this.testServiceImpl.findEmployeeByParam(map); 
 	    
@@ -36,6 +43,27 @@ public class TestController {
 		model.addAttribute("map", map);
 		
 		return "/srpinghello.demo/findSrpingHello";
+	}
+	
+	/**
+	 *   使用Ajax 查询当前数据
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @param map
+	 * @throws IOException 
+	 */
+	@RequestMapping("/findAjaxSpringHello")
+	public String    findAjaxSpringHello(HttpServletRequest request, HttpServletResponse response,Model  model, @RequestParam Map<String,String>map) throws IOException {
+		//获取人员信息
+	    List<EmployeeDTO>  employeeList = this.testServiceImpl.findEmployeeByParam(map); 
+	    int  temp =  Integer.parseInt(map.get("showDataLineCount")) +employeeList.size();
+	    map.put("showDataLineCount",  temp+"");
+	     
+	    WeiXinUtils.setResponseContent(response);
+		response.getWriter().write(JSONArray.fromObject(employeeList).toString());
+		
+		return null;
 	}
 	
 }
