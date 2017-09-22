@@ -32,13 +32,15 @@ public class TestController {
 	@RequestMapping("/findSrpingHello")
 	public String  findSrpingHello(HttpServletRequest request, HttpServletResponse response,Model  model, @RequestParam Map<String,String>map){
 		
+		//当第一次查询时，设置显示行数
 		if(!map.containsKey("showDataLineCount")) {
 			map.put("showDataLineCount", "0");
 		}
 		
 		//获取人员信息
 	    List<EmployeeDTO>  employeeList = this.testServiceImpl.findEmployeeByParam(map); 
-	    
+	    //设置数据显示行数
+	    map.put("showDataLineCount", employeeList.size()+"");
 		model.addAttribute("employeeList", employeeList);
 		model.addAttribute("map", map);
 		
@@ -54,16 +56,13 @@ public class TestController {
 	 * @throws IOException 
 	 */
 	@RequestMapping("/findAjaxSpringHello")
-	public String    findAjaxSpringHello(HttpServletRequest request, HttpServletResponse response,Model  model, @RequestParam Map<String,String>map) throws IOException {
+	public void    findAjaxSpringHello(HttpServletRequest request, HttpServletResponse response,Model  model, @RequestParam Map<String,String>map) throws IOException {
 		//获取人员信息
 	    List<EmployeeDTO>  employeeList = this.testServiceImpl.findEmployeeByParam(map); 
-	    int  temp =  Integer.parseInt(map.get("showDataLineCount")) +employeeList.size();
-	    map.put("showDataLineCount",  temp+"");
 	     
 	    WeiXinUtils.setResponseContent(response);
 		response.getWriter().write(JSONArray.fromObject(employeeList).toString());
 		
-		return null;
 	}
 	
 }
