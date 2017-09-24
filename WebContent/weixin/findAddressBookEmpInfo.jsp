@@ -24,19 +24,41 @@
           var scrollTop = $(this).scrollTop();//滚动高度
           var count = $(".showDepEmploy tr").length;
           if (contentH - viewH - scrollTop<=100) {
-              
-        	  var  srollTableDate = '<tr><td colspan="12">'
-        	                                   +'<p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>'
-        	                                   +'</td></tr>'
         	  
-        	$(".showDepEmploy").append(srollTableDate);
-          /*     $.ajax({
-                  url: "XXXAction.do?id=" + count,
-                  type: "POST",
-                  success: function (data) {
-                      $("#showDepEmploy").append(data);
-                  }
-              }); */
+        	 //加载信息
+        	  $("#imloading").fadeIn();
+              $("#imloading").fadeIn("slow");
+              $("#imloading").fadeIn(3000);
+              
+              //每次动态 1500秒显示
+        	  setTimeout(function() {
+        		  //对数据进行分装
+        		  var  srollTableDate = '<tr><td colspan="12">'
+                      +'<p>《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》是最权威、最经典的人工智能教材，已被全世界100多个国家的1200多所大学用作教材。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》的最新版全面而系统地介绍了人工智能的理论和实践，阐述了人工智能领域的核心内容，并深入介绍了各个主要的研究方向。全书分为七大部分：第Ⅰ部分“人工智能”，第Ⅱ部分“问题求解”，第Ⅲ部分“知识、推理与规划”，第Ⅳ部分“不确定知识与推理”，第Ⅴ部分“学习”，第Ⅵ部分“通信、感知与行动”，第Ⅶ部分“结论”。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》既详细介绍了人工智能的基本概念、思想和算法，还描述了其各个研究方向最前沿的进展，同时收集整理了详实的历史文献与事件。《世界著名计算机教材精选·人工智能:一种现代的方法(第3版)》适合于不同层次和领域的研究人员及学生，是高等院校本科生和研究生人工智能课的首选教材，也是相关领域的科研与工程技术人员的重要参考书。</p>'
+                      +'</td></tr>'
+                 //添加数据
+				 $(".showDepEmploy").append(srollTableDate);
+                      
+				/*   //通过ajax 添加数据  
+				$.ajax({
+				url: "XXXAction.do?id=" + count,
+				type: "POST",
+				success: function (data) {
+				$("#showDepEmploy").append(data);
+				}
+				}); */
+				
+        		//加载信息隐藏
+                 $("#imloading").fadeOut();
+                 $("#imloading").fadeOut("slow");
+                 $("#imloading").fadeOut(3000);
+				
+					
+        	  },1500)
+              
+        	  
+
+        	  
           }
       });
 
@@ -101,7 +123,10 @@
 		
 </div>
 
- 
+  <div id="imloading" style="width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;border-radius:3px;opacity:0.7;background:#000;margin:10px auto 30px;color:#fff;display:none">
+	       人员数据加载中.....
+  </div>
+	
 </form>	
  
   <script type="text/javascript" src="/media/zTree/js/jquery-1.4.4.min.js"></script>
