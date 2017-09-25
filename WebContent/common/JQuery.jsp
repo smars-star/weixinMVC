@@ -1,8 +1,7 @@
 
 
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/media/bootstrap/js/jquery.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/media/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/media/js/jquery/jquery2.1.4.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/media/js/jquery/jquery.mousewheel.js "></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/media/js/jquery/datepick/jquery.datepick.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/media/js/jquery/datepick/jquery.datepick-zh-CN.js"></script>

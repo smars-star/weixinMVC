@@ -51,22 +51,28 @@
                      processData: false,
                      contentType: false,
                      success: function (data) {
-                   	  var  employeeList = eval(data);
-                   	  var  srollTableDate = "";
-                   	  for(var i = 0; i < employeeList.length; i++){
-                   		  srollTableDate += '<tr>'
-   	                                                          +'<td>'+employeeList[i].employeeName+'</td>'
-   	                                                          +'<td>'+employeeList[i].genderCodeValue+'</td>'
-   	                                                          +'<td>'+employeeList[i].workDepName+'</td>'
-   	                                                          +'</tr>';
-                   	  }
-                   	
-                   	    //加载数据
-                         $(".showDepEmploy tbody").append(srollTableDate);
-                        //修改页面数据显示行数
-                         $("#showDataLineCountID").val(Number(showDataLineCount)+Number(employeeList.length));
-                         
-                         loading = false; 
+                    	//添加数据
+                    	 if(data == null || data.length ==0){
+                    		 $("#imloading").text("数据已经加载完了...");
+                    	 }else{
+                    		  var  employeeList = eval(data);
+	   	                   	  var  srollTableDate = "";
+	   	                   	  for(var i = 0; i < employeeList.length; i++){
+	   	                   		  srollTableDate += '<tr>'
+	   	   	                                                          +'<td>'+employeeList[i].employeeName+'</td>'
+	   	   	                                                          +'<td>'+employeeList[i].genderCodeValue+'</td>'
+	   	   	                                                          +'<td>'+employeeList[i].workDepName+'</td>'
+	   	   	                                                          +'</tr>';
+	   	                   	   }
+	   	                   	
+	   	                   	    //加载数据
+	   	                        $(".showDepEmploy tbody").append(srollTableDate);
+	   	                        //修改页面数据显示行数
+	   	                        $("#showDataLineCountID").val(Number(showDataLineCount)+Number(employeeList.length));
+	   	                        //设置数据重复加载标志位
+	   	                        loading = false; 
+                    	 }
+	                   	 
                      }
                  }); 
                   
@@ -74,10 +80,8 @@
                   $("#imloading").fadeOut();
                   $("#imloading").fadeOut("slow");
                   $("#imloading").fadeOut(3000);
-
                   
               }, 1500);
-              
             
           }
       });
@@ -133,9 +137,11 @@
    </display:table>
     --%>
 </div>
-	  <div id="imloading" style="width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;border-radius:3px;opacity:0.7;background:#000;margin:10px auto 30px;color:#fff;display:none">
+
+   <div id="imloading" style="width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;border-radius:3px;opacity:0.7;background:#000;margin:10px auto 30px;color:#fff;display:none">
 	       人员数据加载中.....
 	</div>
+	
 </form>	
 
   <script type="text/javascript">
