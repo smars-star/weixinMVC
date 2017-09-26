@@ -114,9 +114,9 @@
 		   <a href="./pageauthoriza/findPageAuthorization.jsp" class="list-group-item list-group-item-success" >网页应用</a><br>
 		     -->
 		   
-		   <div style="position: relative;margin-top: 200px;" align="center">
-		      <img alt="企业号二维码" src="../../media/images/qrcode_gds_small.png"   class="img-responsive">
-		       <div style="margin-bottom: -30px;"><h4>长城数字企业号二维码</h4></div>
+		   <div style="position: absolute;bottom: 10px;width: 100%;" align="center">
+		          <img alt="企业号二维码" src="../../media/images/qrcode_gds_small.png"   class="img-responsive">
+		          <h4>长城数字企业号二维码</h4>
 		   </div>
 		
 		   <!--右侧悬浮菜单-->
@@ -143,13 +143,15 @@
         
 <script type="text/javascript">
 $(function(){
-
+      
+	//鼠标悬浮显示
  	$('.slide .icon li').mouseenter(function(){
 		$('.slide .info').addClass('hover');
 		$('.slide .info li').hide();
 		$('.slide .info li.'+$(this).attr('class')).show();//.slide .info li.qq
 	});
  	
+	//鼠标悬浮隐藏
  	$('.slide').mouseleave(function(){
 		$('.slide .info').removeClass('hover');
 	}); 
