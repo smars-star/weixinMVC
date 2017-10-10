@@ -22,25 +22,28 @@
   $(document).ready(function () {
     
 	  var loading = false; //加载数据标志位 ,防止ajax重复提交
+
 	  
       $("#showConent").scroll(function () {
-          var viewH = $(this).height();//可见高度
-          var contentH = $(this).get(0).scrollHeight;//内容高度
-          var scrollTop = $(this).scrollTop();//滚动高度
-          var count = $(".showDepEmploy").length;
+          var viewH = $(this).height();                            //可见高度
+          var contentH = $(this).get(0).scrollHeight; //内容高度
+          var scrollTop = $(this).scrollTop();                //滚动高度
+          var count = $(".showDepEmploy").length;  //已经在显示页面的高度
           
           //获取当前查询条件
           var form = new FormData(document.getElementById("findAllEmpId"));
           
           if (contentH - viewH - scrollTop<=100) {
-        	  loading = true; 
+        	  loading = true;    //设置数据重复加载标志位
         	  
-        	  //加载信息
-        	  $("#imloading").fadeIn();
+        	  //显示加载提示信息
               $("#imloading").fadeIn("slow");
               $("#imloading").fadeIn(3000);
-              
+        	  $("#imloading").fadeIn();
+        	  
               setTimeout(function() {
+            	  
+            	  //获取需要已经加载的条数
                   var  showDataLineCount  =  $("#showDataLineCountID").val();
                   
                   $.ajax({
@@ -54,6 +57,7 @@
                     	//添加数据
                     	 if(data == null || data.length ==0){
                     		 $("#imloading").text("数据已经加载完了...");
+                    		 
                     	 }else{
                     		  var  employeeList = eval(data);
 	   	                   	  var  srollTableDate = "";
@@ -63,6 +67,7 @@
 	   	   	                                                          +'<td>'+employeeList[i].genderCodeValue+'</td>'
 	   	   	                                                          +'<td>'+employeeList[i].workDepName+'</td>'
 	   	   	                                                          +'</tr>';
+	   	   	                                                          
 	   	                   	   }
 	   	                   	
 	   	                   	    //加载数据
@@ -76,7 +81,7 @@
                      }
                  }); 
                   
-                  //加载信息隐藏
+                  //隐藏加载提示信息
                   $("#imloading").fadeOut();
                   $("#imloading").fadeOut("slow");
                   $("#imloading").fadeOut(3000);
@@ -87,6 +92,7 @@
       });
 
   })
+
   </script> 
 </head>
 <body>
@@ -136,20 +142,25 @@
 	   <display:setProperty name="export.excel.filename" value="StaffInfo.xls"/>
    </display:table>
     --%>
-</div>
-
-   <div id="imloading" style="width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;border-radius:3px;opacity:0.7;background:#000;margin:10px auto 30px;color:#fff;display:none">
+    
+     <div id="imloading" style="width:150px;height:30px;line-height:30px;font-size:16px;text-align:center;border-radius:3px;opacity:0.7;background:#000;margin:10px auto 10px;color:#fff;display:none;">
 	       人员数据加载中.....
 	</div>
+</div>
+
+
 	
 </form>	
 
   <script type="text/javascript">
-       
-       //查询人员信息
-       $("#queryEmployeeName").click(function(){
-    	     document.forms[0].submit();
-       });  
+    //设置页面高度
+	var  windowHeight = document.body.scrollHeight-130;// 网页可见区域高度
+	$("#showConent").height(windowHeight);
+	
+    //查询人员信息
+    $("#queryEmployeeName").click(function(){
+ 	     document.forms[0].submit();
+    });  
   </script>
   
 	

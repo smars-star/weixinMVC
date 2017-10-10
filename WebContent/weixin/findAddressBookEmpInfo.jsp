@@ -25,7 +25,7 @@
           var count = $(".showDepEmploy tr").length;
           if (contentH - viewH - scrollTop<=100) {
         	  
-        	 //加载信息
+        	  //显示加载提示信息
         	  $("#imloading").fadeIn();
               $("#imloading").fadeIn("slow");
               $("#imloading").fadeIn(3000);
@@ -38,27 +38,13 @@
                       +'</td></tr>'
                  //添加数据
 				 $(".showDepEmploy").append(srollTableDate);
-                      
-				/*   //通过ajax 添加数据  
-				$.ajax({
-				url: "XXXAction.do?id=" + count,
-				type: "POST",
-				success: function (data) {
-				$("#showDepEmploy").append(data);
-				}
-				}); */
 				
-        		//加载信息隐藏
+        		//隐藏加载提示信息
                  $("#imloading").fadeOut();
                  $("#imloading").fadeOut("slow");
                  $("#imloading").fadeOut(3000);
-				
 					
         	  },1500)
-              
-        	  
-
-        	  
           }
       });
 
@@ -80,7 +66,7 @@
 </div>
 			 
  <div style="position: fixed; left:260px;  top:120px;height:550px;overflow: auto;" id="showConent">
-		<display:table name="employeeList" id="row"  pagesize="15" export="true"  class="table table-condensed showDepEmploy"  requestURI="findAddressBookEmpInfo.do" >
+		<display:table name="employeeList" id="row"  pagesize="30" style="width:100%;" export="true"  class="table table-condensed showDepEmploy"  requestURI="findAddressBookEmpInfo.do" >
 		<display:column title="操作" sortable="false" headerClass="sortable"  media="html">
 		<a href="#" onclick="deleteEmp('${row.userid}')"><img alt="删除" src="/media/images/btn_delete.png"></a>
 		</display:column>
@@ -133,8 +119,13 @@
   <script type="text/javascript" src="/media/zTree/js/jquery.ztree.core.js"></script>
   
   
-  <script type="text/javascript">
-  
+ <script type="text/javascript">
+    //设置页面显示高度
+    var  windowHeight = window.screen.availHeight - document.body.clientHeight -200;// 网页可见区域高度
+  //  var  windowHeight = window.screen.availHeight;// 屏幕可用高度
+    $("#showConent").height(windowHeight);
+    
+     /******************  zTree ***********************/
     var zTree;
 	var demoIframe;
 
@@ -155,14 +146,8 @@
 		callback: {
 			beforeClick: function(treeId, treeNode) {
 				var zTree = $.fn.zTree.getZTreeObj("tree");
+				//显示人员信息
 				showDepEmployee(treeNode.id);
-				/* if (treeNode.isParent) {
-					zTree.expandNode(treeNode);
-					return false;
-				} else {
-					showDepEmployee(treeNode.id);
-					return true;
-				} */
 			}
 		}
 	};
@@ -192,22 +177,26 @@
 		h = demoIframe.height() >= maxH ? minH:maxH ;
 		if (h < 530) h = 530;
 		demoIframe.height(h);
+		
 	}
   
-	//根据部门ID
+
+	 
+	//根据部门Id，显示该部门的人员信息
    function  showDepEmployee(departmentID){
+	   $(".pagebanner").hide();
+	   $(".pagelinks").hide();
 	   
 	   $.ajax({
 		   type: "POST",
 		   url: "findDepEmployee.do",
 		   data: "departmentID="+departmentID,
 		   success: function(depEmpList){
-			   
 			  
-			   var  department = 0;
-		        var  showEmpListStr = "";
-		        var depEmpList = eval(depEmpList);
-		        
+			    var  department = 0;                                  //定义要选择的部门Id
+		        var  showEmpListStr = "";                        //定义要加载的数据
+		        var depEmpList = eval(depEmpList); //转换json数据
+		        //如果部门当中有数据
 		        if(depEmpList.length >0){
 		        
 					        //展现该部门的人员信息
@@ -222,6 +211,7 @@
 						    	}else{
 						    		genderStr = '女';
 						    	}
+						    	
 						    	//是否关注
 						    	var  statusStr  = depEmpList[i].status;
 						    	if(statusStr == 1){
@@ -254,6 +244,7 @@
 						    	                                     +depEmpList[i].email+'</td><td>'+wixinid+'</td><td>'
 						    	                                     +avatarStr+'</td><td>'+statusStr+'</td><td>'
 						    	                                     +depEmpList[i].extattr.attrs+'</td></tr>';
+						    	                                     
 						    }
 		        
 		        }else{
@@ -264,14 +255,15 @@
 		        
 		        $("#departmentID").val(department);
 			    $(".showDepEmploy tbody").html(showEmpListStr); 
+			    
 		   },error: function(e) {
 	            alert("对不起，由于网络原因系统没有反映！<br/>请重新进入应用！");
+	            
 	      }
 		});
-	   
-   }	
+     }	
 	
-	//打开微信人员信息
+	//修改微信人员信息
 	function  modifyInitEmp(userid){
 		  window.open("/weixin/modifyInitEmp.do?userid="+userid);
 	}
@@ -281,6 +273,7 @@
 		var a=confirm("您确定要删除吗？");
 		if(a == true){
 			window.open('/weixin/deleteEmp.do?userid=' + userid);
+			
 		}
 	}
 	  

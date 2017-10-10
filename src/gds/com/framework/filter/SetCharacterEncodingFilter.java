@@ -9,9 +9,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+
 /**
- * 字符集过滤器，默认走UTF-8格式
- * @version $Revision: 1.1.1.1 $
+ * 
+ * <p>Description:字符集过滤器，默认走UTF-8格式</p>
+ * <p>Copyright: Copyright (c) 2017</p>
+ * <p>Company:   刘云鹏<br></p>
+ * @date 创建时间：4 Sep 2017 11:52:36
+ * @author liuyunpeng
+ * @version  1.0
  */
 public class SetCharacterEncodingFilter implements Filter {
 

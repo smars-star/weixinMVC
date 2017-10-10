@@ -14,6 +14,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * 
+ * <p>Description:二维码 </p>
+ * <p>Copyright: Copyright (c) 2017</p>
+ * <p>Company:   刘云鹏<br></p>
+ * @date 创建时间：4 Sep 2017 11:52:36
+ * @author liuyunpeng
+ * @version  1.0
+ */
 @RequestMapping("/qrcode")
 @Controller
 public class QRController {
